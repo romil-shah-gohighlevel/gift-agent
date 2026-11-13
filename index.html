@@ -177,12 +177,25 @@ section{position:relative}
 .pill.lime:hover{background:var(--bone);border-color:var(--bone)}
 .pill.dark{background:var(--black);color:var(--bone);border-color:var(--black)}
 .v-track{display:flex;gap:22px;padding:0 var(--gut);width:max-content;flex:1;min-height:0;max-height:640px}
-.card{position:relative;flex:none;width:clamp(300px,30vw,460px);border-radius:26px;background:var(--ink);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column}
+.card{position:relative;flex:none;width:clamp(320px,33vw,500px);border-radius:26px;background:var(--ink);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column}
 .c-inner{display:flex;flex-direction:column;height:100%;transition:filter 1.1s cubic-bezier(.2,.8,.2,1),opacity 1.1s;transition-delay:calc(var(--i) * 60ms)}
 #vault.locked .c-inner{filter:blur(14px) grayscale(.7);opacity:.55}
 .c-top{display:flex;justify-content:space-between;padding:20px 22px 0;position:relative;z-index:2}
-.c-art{position:relative;flex:1;min-height:200px;display:grid;place-items:center;overflow:hidden}
-.c-blob{position:absolute;width:78%;aspect-ratio:1;background:radial-gradient(circle at 35% 35%,var(--h1),var(--h2) 70%);filter:blur(28px);opacity:.9;animation:morph 9s ease-in-out infinite alternate;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.c-art{position:relative;flex:1;min-height:220px;margin:14px 14px 18px;border-radius:18px;background:var(--h1);display:grid;place-items:center;overflow:hidden}
+.c-img{position:relative;width:82%;height:82%;object-fit:contain;mix-blend-mode:multiply;user-select:none;-webkit-user-drag:none}
+.c-spec{color:var(--muted);margin-bottom:8px;font-size:11px}
+.c-brand{font:900 17px/1 var(--sans);letter-spacing:-.02em;text-transform:uppercase}
+/* brand wall */
+.brands{padding:clamp(70px,12vh,130px) 0 clamp(40px,8vh,90px);border-top:1px solid var(--line);overflow:hidden}
+.brandwall{border:0;background:transparent}
+.brandwall .mq-track span.b{font:900 clamp(56px,10vw,170px)/1 var(--sans);letter-spacing:-.05em;text-transform:uppercase;padding:6px 0;transition:color .3s}
+.brandwall .mq-track span.b.s{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.02em}
+.brandwall .mq-track span.b.o{color:transparent;-webkit-text-stroke:1.5px var(--bone)}
+.brandwall .mq-track span.dot{font-size:clamp(28px,4vw,64px);color:var(--lime);margin:0 .6em;display:inline-block;animation:spin 6s linear infinite}
+.brandwall.alt .mq-track span.b{font-size:clamp(36px,6vw,100px);color:var(--muted)}
+.brandwall.alt .mq-track span.b.o{-webkit-text-stroke-color:var(--muted)}
+@media (hover:hover){ .brandwall .mq-track span.b:hover{color:var(--lime);-webkit-text-stroke-color:var(--lime)} }
+.c-blob{position:absolute;width:70%;aspect-ratio:1;background:radial-gradient(circle at 35% 35%,var(--h2),transparent 70%);filter:blur(30px);opacity:.75;animation:morph 9s ease-in-out infinite alternate;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 @keyframes morph{0%{border-radius:42% 58% 63% 37%/45% 41% 59% 55%;transform:rotate(0)}50%{border-radius:61% 39% 35% 65%/58% 62% 38% 42%}100%{border-radius:37% 63% 52% 48%/38% 56% 44% 62%;transform:rotate(160deg)}}
 .c-emoji{position:relative;font-size:clamp(90px,9vw,150px);line-height:1;filter:drop-shadow(0 24px 30px rgba(0,0,0,.5));user-select:none}
 .card:hover .c-blob{transform:scale(1.25)}
@@ -325,7 +338,7 @@ footer{position:relative;padding:clamp(80px,14vh,160px) var(--gut) 120px;border-
         <svg viewBox="0 0 148 148" aria-hidden="true"><defs><path id="circ" d="M74,74 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/></defs><text><textPath href="#circ">• scroll to train • the model • 4 riddles • 1 gift </textPath></text></svg>
         <span class="disc">START ↓</span>
       </button>
-      <div class="mono">Drop 2026<br>14 gifts · ₹8k cap</div>
+      <div class="mono">Drop 2026<br>10 gifts · pick 1</div>
     </div>
   </section>
 
@@ -382,13 +395,20 @@ footer{position:relative;padding:clamp(80px,14vh,160px) var(--gut) 120px;border-
     </div>
   </section>
 
+  <!-- ================= BRAND WALL ================= -->
+  <section class="brands" aria-label="Brands in the vault">
+    <div class="sec-label mono"><span><b>In the vault</b></span><span>Real products · straight from Amazon India</span></div>
+    <div class="marquee brandwall" data-speed="28"><span class="mq-skew"><span class="mq-track" id="brandTrack"></span></span></div>
+    <div class="marquee brandwall alt" data-dir="r" data-speed="36"><span class="mq-skew"><span class="mq-track" id="brandTrack2"></span></span></div>
+  </section>
+
   <!-- ================= VAULT ================= -->
   <section id="vault" class="locked" aria-labelledby="vaultTitle">
     <div class="v-pin">
       <div class="v-head">
         <div>
           <div class="mono" style="color:var(--muted)"><b style="color:var(--bone);font-weight:500">(03)</b> The vault · scroll sideways</div>
-          <h2 id="vaultTitle">Fourteen ways <span class="serif">to say</span> thanks.</h2>
+          <h2 id="vaultTitle">Ten ways <span class="serif">to say</span> thanks.</h2>
         </div>
         <button class="pill" type="button" id="surpriseBtn" data-magnetic data-cursor="ROLL">🎲 Surprise me</button>
       </div>
@@ -408,7 +428,7 @@ footer{position:relative;padding:clamp(80px,14vh,160px) var(--gut) 120px;border-
 
 <footer>
   <span class="big-thanks" aria-hidden="true">Thank you.</span>
-  <div class="f-row mono"><span id="credit"></span><span>Prices approximate · Amazon India</span><span>No LLMs were harmed</span></div>
+  <div class="f-row mono"><span id="credit"></span><span>Prices from Amazon India · 11 Nov 2026</span><span>No LLMs were harmed</span></div>
 </footer>
 
 <div class="dock" id="dock" aria-live="polite">
@@ -460,25 +480,33 @@ const CONFIG = {
   webhookUrl: '',
   managerName: 'your manager',   // or pass ?from=Name in the link
   teamName: 'Conversation AI team',
-  storageKey: 'gifty-pick-v2',
+  storageKey: 'gifty-pick-v3',
 };
 
-const amazon = q => 'https://www.amazon.in/s?k=' + encodeURIComponent(q);
+// Prices and photos taken from the Amazon India product pages on 11 Nov 2026.
+const IMG = id => `https://m.media-amazon.com/images/I/${id}._SL800_.jpg`;
+const DP  = asin => `https://www.amazon.in/dp/${asin}`;
 const GIFTS = [
-  { id:'echo-dot',  emoji:'🔵', cat:'Tech',      c1:'#5b7bff', c2:'#0b1a6b', name:'Echo Dot (5th Gen) with Clock', price:'~₹5,000–6,000', q:'Echo Dot 5th Gen with clock', quip:'A conversational agent at home whose prompts you don’t have to debug.' },
-  { id:'jbl-flip',  emoji:'🔊', cat:'Tech',      c1:'#ff5b2e', c2:'#5a1405', name:'JBL Flip 6 Speaker',            price:'~₹7,000–8,000', q:'JBL Flip 6',                quip:'Waterproof. Unlike our sprint estimates.' },
-  { id:'sony-anc',  emoji:'🎧', cat:'Tech',      c1:'#d4ff3a', c2:'#2f3a00', name:'Sony WH-CH720N ANC Headphones', price:'~₹7,500–8,500', q:'Sony WH-CH720N',            quip:'Noise cancelling for every “quick sync?” ping.' },
-  { id:'charger',   emoji:'🔋', cat:'Tech',      c1:'#ff4fb0', c2:'#4a0730', name:'3-in-1 Wireless Charging Stand', price:'~₹4,000–7,000', q:'3 in 1 wireless charging stand Anker', quip:'Phone, watch and earbuds. One dock. Zero spaghetti.' },
-  { id:'mx-mouse',  emoji:'🖱️', cat:'Desk',      c1:'#00e0c6', c2:'#003a35', name:'Logitech MX Anywhere 3S',       price:'~₹6,500–7,500', q:'Logitech MX Anywhere 3S',   quip:'Scrolls fast enough to read our logs.' },
-  { id:'keychron',  emoji:'⌨️', cat:'Desk',      c1:'#ffb800', c2:'#4a3300', name:'Keychron K2 Mechanical Keyboard', price:'~₹7,000–8,500', q:'Keychron K2 wireless mechanical keyboard', quip:'Every LGTM now sounds like a drumroll.' },
-  { id:'desk-kit',  emoji:'💡', cat:'Desk',      c1:'#f1eee7', c2:'#3a3a3a', name:'Monitor Light Bar + Laptop Stand', price:'~₹4,000–6,000', q:'monitor light bar',      quip:'Light on the code, not in your eyes.' },
-  { id:'lego',      emoji:'🌳', cat:'Desk',      c1:'#4cd964', c2:'#0d3a14', name:'LEGO Icons Bonsai Tree',        price:'~₹4,500–5,000', q:'LEGO Icons Bonsai Tree 10281', quip:'A tree that never needs watering or a rollback.' },
-  { id:'instax',    emoji:'📸', cat:'Life',      c1:'#ff8fd1', c2:'#4a1a3a', name:'Instax Mini 12 + Film',         price:'~₹6,500–7,500', q:'Instax Mini 12',            quip:'Real-world screenshots. No cloud storage.' },
-  { id:'watch',     emoji:'⌚', cat:'Life',      c1:'#7c8cff', c2:'#151a4a', name:'Amazfit Bip Smartwatch',        price:'~₹6,000–8,000', q:'Amazfit Bip smartwatch',    quip:'Tracks steps, sleep and meetings that could have been a message.' },
-  { id:'coffee',    emoji:'☕', cat:'Life',      c1:'#e0954f', c2:'#2a160a', name:'AeroPress + Specialty Coffee',  price:'~₹4,500–6,000', q:'AeroPress coffee maker',    quip:'Runtime fuel with lower latency than the office machine.' },
-  { id:'backpack',  emoji:'🎒', cat:'Life',      c1:'#ff7a45', c2:'#1a1a1a', name:'Premium Laptop Backpack',       price:'~₹4,000–7,000', q:'Mokobara laptop backpack',  quip:'Carries a laptop, a charger and the Q4 OKRs.' },
-  { id:'books',     emoji:'📚', cat:'Life',      c1:'#e8d5a3', c2:'#3a2f1a', name:'AI + Leadership Book Bundle',   price:'~₹2,500–4,000', q:'Co-Intelligence Ethan Mollick book', quip:'Long-context training data for humans.' },
-  { id:'gift-card', emoji:'🎟️', cat:'Wildcard',  c1:'#d4ff3a', c2:'#0a0a0b', name:'Amazon Pay Gift Card · ₹8,000', price:'₹8,000',        q:'Amazon Pay gift card',      quip:'Human handoff: you choose.' },
+  { id:'mxmaster', emoji:'🖱️', cat:'Desk',      brand:'Logitech', c1:'#e4e6ea', c2:'#8c93a3', img:IMG('61CSiQeX+pL'),  url:DP('B0FNV6GP6K'),
+    name:'Logitech MX Master 3S Mouse',          spec:'Graphite · Bluetooth · 8K DPI · quiet clicks', price:'₹7,995', quip:'Scrolls a thousand lines a second. Built for reading our logs.' },
+  { id:'damilano', emoji:'👜', cat:'Style',     brand:'Da Milano', c1:'#ece9e6', c2:'#9b9590', img:IMG('61rIo2Cy2ZL'),  url:DP('B0DNMJZQXC'),
+    name:'Da Milano Genuine Leather Sling',      spec:'Grey · genuine leather · style 10068', price:'₹6,299', quip:'Italian leather for the laptop-free days.' },
+  { id:'marshall', emoji:'🔊', cat:'Audio',     brand:'Marshall',     c1:'#f3ead8', c2:'#d8b77a', img:IMG('81d1qS5AfPL'),  url:DP('B0DFHCWZ81'),
+    name:'Marshall Willen II Portable Speaker', spec:'Cream · IP67 · 17+ hrs playtime', price:'₹8,999', quip:'Pocket-sized amp for deploy-day anthems.' },
+  { id:'mtb',      emoji:'🚵', cat:'Outdoors',  brand:'Leader', c1:'#ffe0d1', c2:'#ff7a45', img:IMG('816-Z+rlr9L'),  url:DP('B0D4ZBLFQC'),
+    name:'Leader Beast 29T Mountain Bike',       spec:'7-speed · front suspension · dual disc', price:'₹7,049', quip:'The only commute with zero merge conflicts.' },
+  { id:'mokobara', emoji:'🧳', cat:'Travel',    brand:'Mokobara', c1:'#dbe4ff', c2:'#6f8cff', img:IMG('61j21P2vBoL'),  url:DP('B0D9XYDHBN'),
+    name:'Mokobara Transit Cabin Pro Trolley',   spec:'15.6" laptop sleeve · 40L · Blue', price:'₹6,999', quip:'For offsites, onsites and the occasional escape.' },
+  { id:'chair',    emoji:'🪑', cat:'Desk',      brand:'Wakefit', c1:'#e6f6dc', c2:'#7fd56a', img:IMG('71CzgiJn63L'),  url:DP('B0H4HCKQTW'),
+    name:'Wakefit Gravita Ergonomic Chair',      spec:'Recline lock · 3D armrests · 3-yr warranty', price:'₹6,398', quip:'Eight-hour debugging sessions, now lumbar-supported.' },
+  { id:'instax',   emoji:'📸', cat:'Fun',       brand:'Instax', c1:'#dcecff', c2:'#79b6ff', img:IMG('61OEp1weckL'),  url:DP('B0C9CG57MT'),
+    name:'Instax Mini 12 Gift Box + 10 Shots',   spec:'Blue · instant prints', price:'₹7,499', quip:'Real-world screenshots. No cloud storage.' },
+  { id:'fossil',   emoji:'⌚', cat:'Style',     brand:'Fossil', c1:'#efe9e1', c2:'#b89470', img:IMG('71VWBUEea+L'),  url:DP('B00DUCIMCI'),
+    name:'Fossil Chronograph CH2891',            spec:'Black dial · leather strap', price:'₹7,746', quip:'Keeps better time than our sprint estimates.' },
+  { id:'airfryer', emoji:'🍟', cat:'Home',      brand:'Philips', c1:'#f2f2f0', c2:'#c4c4c0', img:IMG('51kxBUJZNUL'),  url:DP('B097RJ867P'),
+    name:'Philips Digital Airfryer HD9252/90',   spec:'4.1L · touch panel · 7 presets', price:'₹7,499', quip:'Crispy fries, zero oil, zero on-call guilt.' },
+  { id:'purifier', emoji:'🌬️', cat:'Home',      brand:'Xiaomi', c1:'#e3f4f1', c2:'#6fc9b8', img:IMG('71c0gNBDDhL'),  url:DP('B0HCZ1W1SN'),
+    name:'Xiaomi Air Purifier 4 Compact',        spec:'230 m³/h CADR · PM2.5 sensor · app + voice', price:'₹6,990', quip:'Filters 99.97% of particles. Still can\'t filter flaky tests.' },
 ];
 
 const RIDDLES = [
@@ -824,18 +852,29 @@ function skipBattle(){
 }
 
 /* ---------- vault ---------- */
+function buildBrandWall(){
+  const styles=['','s','o'];
+  [['#brandTrack',GIFTS],['#brandTrack2',[...GIFTS].reverse()]].forEach(([sel,list]) => {
+    const tr=$(sel);
+    list.forEach((g,i) => { tr.append(el('span','b '+styles[i%3], g.brand), el('span','dot','✺')); });
+  });
+}
 function buildVault(){
+  buildBrandWall();
   const track=$('#track');
   GIFTS.forEach((g,i) => {
     const c=el('article','card'); c.dataset.id=g.id;
     c.style.setProperty('--h1',g.c1); c.style.setProperty('--h2',g.c2); c.style.setProperty('--i',i);
     const inner=el('div','c-inner');
-    const top=el('div','c-top'); top.append(el('span','mono',pad(i+1)+' / '+GIFTS.length), el('span','mono',g.cat));
-    const art=el('div','c-art'); art.append(el('div','c-blob'), el('div','c-emoji',g.emoji));
-    const body=el('div','c-body'); body.append(el('h3','',g.name), el('p','',g.quip));
+    const top=el('div','c-top'); top.append(el('span','c-brand',g.brand), el('span','mono',pad(i+1)+' / '+GIFTS.length+' · '+g.cat));
+    const art=el('div','c-art'); art.append(el('div','c-blob'));
+    const img=el('img','c-img c-float'); img.src=g.img; img.alt=g.name; img.decoding='async'; img.referrerPolicy='no-referrer';
+    img.addEventListener('error', () => { console.warn('Product image failed, showing emoji:', g.id); img.replaceWith(el('div','c-emoji c-float',g.emoji)); }, { once:true });
+    art.append(img);
+    const body=el('div','c-body'); body.append(el('div','c-spec mono',g.spec), el('h3','',g.name), el('p','',g.quip));
     const row=el('div','c-row'); row.append(el('span','c-price',g.price));
     const acts=el('div','c-acts');
-    const a=el('a','','Amazon ↗'); a.href=amazon(g.q); a.target='_blank'; a.rel='noopener noreferrer'; a.dataset.cursor='VIEW';
+    const a=el('a','','View on Amazon ↗'); a.href=g.url; a.target='_blank'; a.rel='noopener noreferrer'; a.dataset.cursor='VIEW';
     const pick=el('button','pick','Pick'); pick.type='button'; pick.dataset.cursor='PICK';
     pick.addEventListener('click', e => select(g.id, e));
     acts.append(a,pick); row.append(acts); body.append(row);
@@ -843,7 +882,7 @@ function buildVault(){
     c.append(inner, el('div','c-stamp','PICKED ✓'));
     track.append(c);
   });
-  if(anim) gsap.to('.c-emoji',{ y:-16, duration:2.4, ease:'sine.inOut', yoyo:true, repeat:-1, stagger:{ each:.25, from:'random' } });
+  if(anim) gsap.to('.c-float',{ y:-16, duration:2.4, ease:'sine.inOut', yoyo:true, repeat:-1, stagger:{ each:.25, from:'random' } });
 }
 function initHorizontal(){
   if(!anim) return;
@@ -881,7 +920,7 @@ function select(id, e){
   const card=$(`.card[data-id="${id}"]`);
   if(anim){
     gsap.fromTo(card.querySelector('.c-stamp'),{ scale:2.6, rotate:-40, opacity:0 },{ scale:1, rotate:-12, opacity:1, duration:.7, ease:'back.out(2.2)' });
-    gsap.fromTo(card.querySelector('.c-emoji'),{ scale:1.35 },{ scale:1, duration:.9, ease:'elastic.out(1,.4)' });
+    gsap.fromTo(card.querySelector('.c-float'),{ scale:1.25 },{ scale:1, duration:.9, ease:'elastic.out(1,.4)' });
   }
   if(e && e.clientX) confetti(e.clientX, e.clientY, 50, .6);
   $('#dockName').textContent = g.emoji + '  ' + g.name;
